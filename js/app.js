@@ -47,21 +47,20 @@ function Node(radius, speed, color) {
 var mouseData = {};
 var stage = new PIXI.Container();
 stage.interactive = true;
-var nodesNumber = 400;
 var nodes = [];
 
 var lines = new PIXI.Graphics();
+var numberOfNodes = 400;
 var drawLineDistance = 100;
+var mouseLineDistance = 200;
 
 stage.addChild(lines);
 
+var radius = 0.1;
+var speed = 0.3;
+var color = 0xFFFFFF;
 
-
-for(var i = 0; i < nodesNumber; i++) {
-
-    var radius = 0.5;
-    var speed = 0.8;
-    var color = 0xFFFFFF;
+for(var i = 0; i < numberOfNodes; i++) {
 
     var node = new Node(radius, speed, color);
 
@@ -85,24 +84,20 @@ function animate(){
                 var distance = getDistance(nodes[i].pixi.x, nodes[i].pixi.y, nodes[j].pixi.x, nodes[j].pixi.y);
 
                 if (distance < drawLineDistance) {
-                    //nodes[i].pixi.speed = nodes[i].pixi.speed + distance;
-                    lines.lineStyle(0.5, 0xFFFFFF , ((drawLineDistance - distance) / distance)); //0xB9B4B8
+                    lines.lineStyle(0.5, 0xe0e0e0 , ((drawLineDistance - distance) / distance));
                     lines.moveTo(nodes[i].pixi.x, nodes[i].pixi.y);
                     lines.lineTo(nodes[j].pixi.x, nodes[j].pixi.y);
                 }
             }
 
         }
-    }
 
-    for (var j = 0; j <= nodes.length - 1; j++) {
+        var distance = getDistance(mouseData.x, mouseData.y, nodes[i].pixi.x, nodes[i].pixi.y);
 
-        var distance = getDistance(mouseData.x, mouseData.y, nodes[j].pixi.x, nodes[j].pixi.y);
-
-        if (distance < 120) {
-        lines.lineStyle(1, 0xFFFFFF, ((120 - distance) / distance)); //0xB9B4B8
-        lines.moveTo(mouseData.x, mouseData.y);
-        lines.lineTo(nodes[j].pixi.x, nodes[j].pixi.y);
+        if (distance < mouseLineDistance) {
+            lines.lineStyle(1, color, ((mouseLineDistance - distance) / distance)); //0xB9B4B8
+            lines.moveTo(mouseData.x, mouseData.y);
+            lines.lineTo(nodes[i].pixi.x, nodes[i].pixi.y);
         }
 
     }
