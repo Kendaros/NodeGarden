@@ -50,13 +50,13 @@ stage.interactive = true;
 var nodes = [];
 
 var lines = new PIXI.Graphics();
-var numberOfNodes = 400;
-var drawLineDistance = 100;
-var mouseLineDistance = 200;
+var numberOfNodes = 150;
+var drawLineDistance = 150;
+var mouseLineDistance = 150;
 
 stage.addChild(lines);
 
-var radius = 0.1;
+var radius = 1;
 var speed = 0.3;
 var color = 0xFFFFFF;
 
