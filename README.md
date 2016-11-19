@@ -1,4 +1,4 @@
 # NodeGarden
-A nice NodeGarden
+A simple, peaceful NodeGarden
 
-Live demo on http://jackyfong.com/lab/nodegarden
+Live demo on http://jackyfong.com/nodegarden
